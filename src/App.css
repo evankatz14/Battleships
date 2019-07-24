@@ -1,33 +1,111 @@
+html {
+    /*background:url('./bigWave.jpg') no-repeat;*/
+    background-color: blue;
+    min-width: 1200px;
+    position: relative;
+}
+
 .App {
-  text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Aguafina Script', cursive;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.Header {
+    position: relative;
+    text-align: center;
+    font-family: 'Eagle Lake', cursive;
+    font-size: 50px;
+    top: 15px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.Board {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 500px;
+    justify-content: space-between;
+    text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.Button {
+    display: flex;
+    border-style: solid;
+    border-width: 1px;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    cursor: crosshair;
+}
+a:hover {
+    background-color: #ffff !important;
+    transform: scale(1.1);
+    opacity: .5;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.status {
+    color: #DAA520;
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: 40px;
+	text-shadow:
+		-1.5px -1.5px 0 #000,
+		1.5px -1.5px 0 #000,
+		-1.5px 1.5px 0 #000,
+		1.5px 1.5px 0 #000;
 }
+
+.NewGame {
+    margin-bottom: 20px;
+}
+
+.ScoreBoard {
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    font-size: 22px;
+    top: 30px;
+    right: 50px;
+    border-style: solid;
+    border-width: 3px;
+    width: 200px;
+    height: 100px;
+    font-family: 'Darker Grotesque', sans-serif;
+    background-color: silver;
+    opacity: 0.5;
+}
+
+.ScoreBoard:hover {
+    opacity: 1;
+}
+.Tracker {
+    display: inline;
+    margin: 0 5px;
+}
+
+.ShipStatus {
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    left: 200px;
+    top: 30px;
+    max-width: 201px;
+}
+
+h3 {
+    margin-bottom: 15px;
+    margin-top: 2px;
+    font-size: 20px;
+    color: #DAA520;
+    font-family: 'Darker Grotesque', sans-serif;
+    text-shadow:
+		-1.5px -1.5px 0 #000,
+		1.5px -1.5px 0 #000,
+		-1.5px 1.5px 0 #000,
+		1.5px 1.5px 0 #000;
+}
+
+
+
