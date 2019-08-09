@@ -10,7 +10,8 @@ import sub from './sub.jpg'
 
 //carrier = 5, battleship = 4, cruiser = 3, sub = 2
 export default class Board extends Component {
-    //initiate state with array to hold 100 null spots on board.
+    
+    //initiate state
     constructor(props) {
         super(props)
         this.state = {
@@ -35,11 +36,13 @@ export default class Board extends Component {
             subSunk: false
         }
     }
-
+    
+    //initiates a new game when the page is first opened
     componentDidMount = () => {
         this.newGame()
     }
     
+    //determines the location of the carrier ship and whether it will be vertical or horizontal
     setCarrier = () => {
         let carrier = []
         let carVert = Math.floor(Math.random() * 2)
@@ -59,6 +62,7 @@ export default class Board extends Component {
         return carrier
     }
     
+    //determines if the carrier has been sunk after a click
     sinkCarrier = (board) => {
         let carrier = this.state.carrier
         const destroyed = []
@@ -70,6 +74,7 @@ export default class Board extends Component {
         return carrier.every(i => destroyed.includes(i))
     }
     
+    //determines the location of the battleship and whether it will be vertical or horizontal
     setBattleship = () => {
         let battleship = []
         let batVert = Math.floor(Math.random() * 2)
@@ -90,6 +95,7 @@ export default class Board extends Component {
         return battleship
     }
     
+    //determines if the battleship has been sunk after a click
     sinkBattleship = (board) => {
         let battleship = this.state.battleship
         const destroyed = []
@@ -100,7 +106,7 @@ export default class Board extends Component {
         }
         return battleship.every(i => destroyed.includes(i))
     }
-    
+    //determines the location of the cruiser ship and whether it will be vertical or horizontal
     setCruiser = () => {
         let cruiser = []
         let cruVert = Math.floor(Math.random() * 2)
@@ -120,7 +126,8 @@ export default class Board extends Component {
         
         return cruiser
     }
-    
+
+    //determines if the cruiser has been sunk after a click
     sinkCruiser = (board) => {
         let cruiser = this.state.cruiser
         const destroyed = []
@@ -132,6 +139,7 @@ export default class Board extends Component {
         return cruiser.every(i => destroyed.includes(i))
     }
     
+    //determines the location of the submarine and whether it will be vertical or horizontal
     setSubmarine = () => {
         let submarine = []
         let subVert = Math.floor(Math.random() * 2)
@@ -152,6 +160,7 @@ export default class Board extends Component {
         return submarine
     }
     
+    //determines if the submarine has been sunk after a click
     sinkSub = (board) => {
         let submarine = this.state.submarine
         const destroyed = []
@@ -163,6 +172,7 @@ export default class Board extends Component {
         return submarine.every(i => destroyed.includes(i))
     }
 
+    //method that calls the squares component, to be used in in map function in return of this component.
     renderSquare = (i) => {
         return <Squares
                     value = {this.state.board[i]}
@@ -172,6 +182,7 @@ export default class Board extends Component {
                 />
     }
     
+    //method to determine if a player has won the game after correctly clicking a square hiding a ship
     winner = (board) => {
         const winningCom = board.filter((value, index) => value === 'X')
         if(winningCom.length === this.state.shipLoc.length){
@@ -180,6 +191,7 @@ export default class Board extends Component {
         return null
     }
 
+    //method to be passed as props that holds the primary logic of the game.  Determines how to transform a square that has been clicked and whether or not the game has been won.  The game will end if there are more ship locations left than there are torpedoes left to shoot.  If the player loses, the locations of the ships spots that have still not been hit will be revealed. Updates State.
     handleClick = (i) => {
         let board = this.state.board.slice()
         let background = this.state.background
@@ -255,7 +267,8 @@ export default class Board extends Component {
         }
         this.setState({board, background, clicks, hits, wins, attempts, carrierImage, battleshipImage, cruiserImage, subImage, carrierSunk, battleshipSunk, cruiserSunk, subSunk})
     }
-
+    
+    //Method to start a new game
     newGame = () => {
         let board = Array.apply(null, {length: 100}).map(Number.call, Number)
         let background = Array(100).fill('aqua')
@@ -303,9 +316,11 @@ export default class Board extends Component {
     }
 
     render(){
-        const {board, clicks, hits, wins, attempts, carrierImage, battleshipImage, cruiserImage, subImage} = this.state
-        console.log(`shipLoc: ${this.state.shipLoc}`)
         
+        //deconstruct state variables to be passed as props
+        const {board, clicks, hits, wins, attempts, carrierImage, battleshipImage, cruiserImage, subImage} = this.state
+        
+        //map through board and call renderSquare to display game board. Call Scoreboard and Shipstatuses. Display torpedos remaining, number of hits so far, and a new game button.
         return (
             <div>
                 <div className = "Board">
